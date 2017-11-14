@@ -1,0 +1,29 @@
+<html>
+  <body>
+    <%- include('header'); %>
+    <strong>Hey <%= name %>, I'm an HTML page!!!!</strong>
+
+    <form action="/test" method="POST">
+      <input type="text" name="name" placeholder="Name!!!!" />
+      <button type="submit">Submit the form</button>
+    </form>
+
+    <h2>Get 'dem peeps...</h2>
+    <button type="button" onClick="javascript: getDePeeps();">Get Star Wars Peeps</button>
+
+    <div id="demPeeps"></div>
+
+    <script>
+      function getDePeeps() {
+        const id = Math.floor(Math.random() * 10) + 1 
+        fetch('https://swapi.co/api/people/' + id)
+          .then(response => response.json())
+          .then(body => {
+            console.log(body)
+            document.getElementById('demPeeps').innerHTML += ('<br />' + body.name)
+          })
+      }
+
+    </script>
+  </body>
+</html>
